@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pageintro.js</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container text-center">
+      <h1 id="step1">PageIntro.js</h1>
+      <p id="step2">
+        A simple jQuery plugin for new feature introduction and step-by-step users guide for your
+        website and project.
+      </p>
+      <p id="step3">this is example text</p>
+      <button id="btn-hello" type="button">Hello, World!</button>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script>
+      window.onload = () => {
+        const options = {
+          container: 'body',
+          spacing: 20,
+          actions: {
+            next: {
+              text: 'Next step',
+              class: 'btn btn-default',
+            },
+            finish: {
+              text: 'OK! I know',
+              class: 'btn btn-success',
+            },
+          },
+          entries: [
+            {
+              selector: '#step1',
+              text: 'You know, this is title',
+            },
+            {
+              selector: '#step2',
+              text: 'This is description',
+            },
+            {
+              selector: '#step3',
+              text: 'This is example text',
+              onEnter: function () {
+                $('#step3').text('Good job!')
+              },
+              onExit: function () {
+                $('#step3').text('This example text is changed!')
+              },
+            },
+            {
+              selector: '#btn-hello',
+              text: 'This is a button',
+            },
+          ],
+        }
+
+        console.log('PageIntro: ', PageIntro)
+
+        var intro = new PageIntro(options)
+
+        intro.start()
+      }
+    </script>
+  </body>
+</html>
